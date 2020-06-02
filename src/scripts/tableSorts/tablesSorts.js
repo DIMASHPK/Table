@@ -6,26 +6,24 @@ export const tableSortsInit = () => {
   const tableHeadTitle = document.querySelectorAll("table thead td");
 
   tableHeadTitle.forEach((td) => {
-    td.addEventListener("click", (e) => eventCallBack(e, tableHeadTitle));
+    td.addEventListener("click", ({ target }) => {
+      {
+        let newWsers;
+
+        if (target.classList.contains("active")) {
+          target.classList.remove("active");
+
+          renderSortingTable(target, tableSortsDescedding, newWsers);
+        } else {
+          tableHeadTitle.forEach((td) => td.classList.remove("active"));
+          target.classList.add("active");
+
+          renderSortingTable(target, tableSortsAscedding, newWsers);
+        }
+      }
+    });
   });
 };
-
-export function eventCallBack({target}, tableHeadTitle){
-  {
-    let newWsers;
-
-    if (target.classList.contains("active")) {
-      target.classList.remove("active");
-      
-      renderSortingTable(target, tableSortsDescedding, newWsers);
-    } else {
-      tableHeadTitle.forEach((td) => td.classList.remove("active"));
-      target.classList.add("active");
-      
-      renderSortingTable(target, tableSortsAscedding, newWsers);
-    }
-  }
-}
 
 function tableSortsAscedding(a, b, sortParam) {
   switch (sortParam) {

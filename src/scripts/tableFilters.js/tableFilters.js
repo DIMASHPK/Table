@@ -10,6 +10,7 @@ export const tableFilters = () => {
   button.addEventListener("click", () => {
     if (input.value.length < 1) {
       users.newUsers = [...users.savedUsers.map((user) => ({ ...user }))];
+      console.log(users.savedUsers);
     } else {
       filterUsers(select, input);
     }
@@ -28,8 +29,8 @@ function filterUsers(select, input) {
       return user[select.value].includes(input.value);
     }
   });
-  if(users.newUsers.length < 1){
-    alert('Не найденно не одного совпадения')
+  if (users.newUsers.length < 1) {
+    alert("Не найденно не одного совпадения");
     users.newUsers = [...users.savedUsers.map((user) => ({ ...user }))];
   }
 }

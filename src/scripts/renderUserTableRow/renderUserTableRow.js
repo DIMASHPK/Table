@@ -4,7 +4,8 @@ const userHTML = ({
   lastName,
   email,
   phone,
-}) => `<tr id=${email}>
+  active,
+}) => `<tr id=${email} class=${active ? "active" : ""}>
     <td>${id}</td>
     <td>${firstName}</td>
     <td>${lastName}</td>

@@ -1,3 +1,5 @@
+import { users } from "../scripts";
+
 const userInfoHTML = ({
   firstName,
   lastName,
@@ -10,25 +12,49 @@ const userInfoHTML = ({
   Город: <b>${city}</b> Провинция/штат: <b>${state}</b> Индекс: <b>${zip}</b>
 </p>`;
 
-export const renderUserInfo = (users) => {
+export const renderUserInfo = () => {
   const tableRows = document.querySelectorAll("table tbody tr");
 
   tableRows.forEach((tr) => {
     tr.addEventListener("click", function () {
       const userWrap = document.querySelector(".userInfo");
 
-      const index = users.indexOf(
-        users.filter((user) => user.email == this.id).pop()
-      );
-
       tableRows.forEach((tr) => tr.classList.remove("active"));
       [...userWrap.children].forEach((child) => child.remove());
 
-      userWrap.insertAdjacentHTML(
-        "beforeend",
-        userInfoHTML({ ...users[index] })
-      );
+      activeElem(this.id, userWrap);
       this.classList.add("active");
+      console.log(users.newUsers);
     });
   });
 };
+
+function activeElem(id, userWrap) {
+  const elemForIndexNewUsers = users.newUsers
+    .filter((user) => user.email == id)
+    .pop();
+  const elemForIndexSavedUsers = users.savedUsers
+    .filter((user) => user.email == id)
+    .pop();
+
+  const indexNewUsers = users.newUsers.indexOf(elemForIndexNewUsers);
+  const indexsavedUsers = users.savedUsers.indexOf(elemForIndexSavedUsers);
+
+  users.newUsers = users.newUsers.map((users) => ({
+    ...users,
+    active: false,
+  }));
+
+  users.savedUsers = users.savedUsers.map((users) => ({
+    ...users,
+    active: false,
+  }));
+
+  users.newUsers[indexNewUsers].active = true;
+  users.savedUsers[indexsavedUsers].active = true;
+
+  userWrap.insertAdjacentHTML(
+    "beforeend",
+    userInfoHTML({ ...users.newUsers[indexNewUsers] })
+  );
+}
