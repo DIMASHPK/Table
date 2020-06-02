@@ -63,7 +63,6 @@ function tableSortsDescedding(a, b, sortParam) {
 
 function renderSortingTable(target, sortFunc, newWsers) {
   newWsers = users.newUsers.sort((a, b) => sortFunc(a, b, target.innerHTML));
-  console.log(users.newUsers);
 
   [...document.querySelector("table tbody").children].forEach((tr) =>
     tr.remove()
