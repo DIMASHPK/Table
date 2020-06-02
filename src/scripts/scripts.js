@@ -1,5 +1,5 @@
 import { renderUserTableRow } from "./renderUserTableRow/renderUserTableRow";
-import { tableSortsAddClass } from "./tableSorts/tablesSorts";
+import { tableSortsInit } from "./tableSorts/tablesSorts";
 import { renderUserInfo } from "./renderUserInfo/renderUserInfo";
 import { preloader } from "./preloader/preloader";
 import { tableFilters } from "./tableFilters.js/tableFilters";
@@ -35,12 +35,14 @@ export const initProject = async () => {
     document.querySelector(".preloaderWrap").remove();
 
   main.style.display = "flex";
-  tableSortsAddClass();
-  tableFilters();
+  
 
   document.querySelector(".userInfo").style.width =
     document.querySelector("table").getBoundingClientRect().width + "px";
 };
+
+tableSortsInit();
+  tableFilters();
 
 initProject();
 pagination();

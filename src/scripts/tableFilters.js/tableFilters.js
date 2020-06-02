@@ -21,11 +21,15 @@ export const tableFilters = () => {
 };
 
 function filterUsers(select, input) {
-  users.newUsers = users.newUsers.filter((user) => {
+  users.newUsers = users.savedUsers.filter((user) => {
     if (typeof user[select.value] !== "string") {
       return user[select.value].toString().includes(input.value);
     } else {
       return user[select.value].includes(input.value);
     }
   });
+  if(users.newUsers.length < 1){
+    alert('Не найденно не одного совпадения')
+    users.newUsers = [...users.savedUsers.map((user) => ({ ...user }))];
+  }
 }

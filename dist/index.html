@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+  </head>
+  <body>
+    <main class="contentWrap">
+      <div class="filterWrap">
+        <select name="" id="">
+          <option value="id">id</option>
+          <option value="firstName">first name</option>
+          <option value="lastName">last name</option>
+          <option value="email">email</option>
+          <option value="phone">phone</option>
+        </select>
+
+        <input type="text" />
+        <button>Найти</button>
+      </div>
+      <table border="1px" bordercolor="#fff">
+        <thead>
+          <tr>
+            <td>id</td>
+            <td>first name</td>
+            <td>last name</td>
+            <td>email</td>
+            <td>phone</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="pagination">
+        <button class="prev" disabled>prev</button>
+        <p class="page">1</p>
+        <button class="next">next</button>
+      </div>
+      <div class="userInfo">
+        <h1>User info will be there</h1>
+      </div>
+    </main>
+    <script src="./scripts.js"></script>
+  </body>
+</html>

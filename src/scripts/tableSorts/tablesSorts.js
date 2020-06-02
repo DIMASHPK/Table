@@ -2,26 +2,30 @@ import { users } from "../scripts";
 import { renderUserTableRow } from "../renderUserTableRow/renderUserTableRow";
 import { renderUserInfo } from "../renderUserInfo/renderUserInfo";
 
-export const tableSortsAddClass = () => {
+export const tableSortsInit = () => {
   const tableHeadTitle = document.querySelectorAll("table thead td");
 
   tableHeadTitle.forEach((td) => {
-    td.addEventListener("click", ({ target }) => {
-      let newWsers;
-
-      if (target.classList.contains("active")) {
-        target.classList.remove("active");
-
-        renderSortingTable(target, tableSortsDescedding, newWsers);
-      } else {
-        tableHeadTitle.forEach((td) => td.classList.remove("active"));
-        target.classList.add("active");
-
-        renderSortingTable(target, tableSortsAscedding, newWsers);
-      }
-    });
+    td.addEventListener("click", (e) => eventCallBack(e, tableHeadTitle));
   });
 };
+
+export function eventCallBack({target}, tableHeadTitle){
+  {
+    let newWsers;
+
+    if (target.classList.contains("active")) {
+      target.classList.remove("active");
+      
+      renderSortingTable(target, tableSortsDescedding, newWsers);
+    } else {
+      tableHeadTitle.forEach((td) => td.classList.remove("active"));
+      target.classList.add("active");
+      
+      renderSortingTable(target, tableSortsAscedding, newWsers);
+    }
+  }
+}
 
 function tableSortsAscedding(a, b, sortParam) {
   switch (sortParam) {
@@ -59,6 +63,7 @@ function tableSortsDescedding(a, b, sortParam) {
 
 function renderSortingTable(target, sortFunc, newWsers) {
   newWsers = users.newUsers.sort((a, b) => sortFunc(a, b, target.innerHTML));
+  console.log(users.newUsers);
 
   [...document.querySelector("table tbody").children].forEach((tr) =>
     tr.remove()
