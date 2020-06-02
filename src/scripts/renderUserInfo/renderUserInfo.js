@@ -24,7 +24,6 @@ export const renderUserInfo = () => {
 
       activeElem(this.id, userWrap);
       this.classList.add("active");
-      console.log(users.newUsers);
     });
   });
 };
